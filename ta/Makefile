@@ -22,6 +22,10 @@ TA_DIRS := create_fail_test \
 	   sha_perf \
 	   aes_perf
 
+ifeq ($(CFG_WITH_SDP),y)
+TA_DIRS += sdp_basic
+endif
+
 ifdef CFG_GP_PACKAGE_PATH
 TA_DIRS += GP_TTA_Arithmetical \
 	   GP_TTA_Crypto \
