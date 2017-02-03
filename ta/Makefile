@@ -23,7 +23,8 @@ TA_DIRS := create_fail_test \
 	   aes_perf
 
 ifeq ($(CFG_WITH_SDP),y)
-TA_DIRS += sdp_basic
+TA_DIRS += sdp_basic \
+	   sdp_perf
 endif
 
 ifdef CFG_GP_PACKAGE_PATH

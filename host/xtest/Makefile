@@ -49,7 +49,8 @@ srcs := xtest_1000.c \
 ifeq ($(CFG_WITH_SDP),y)
 CFLAGS += -DWITH_SDP
 
-srcs += sdp_basic.c
+srcs += sdp_basic.c \
+	sdp_perf.c
 endif
 
 ifdef CFG_GP_PACKAGE_PATH
@@ -84,6 +85,7 @@ CFLAGS += -I../../ta/sha_perf/include
 CFLAGS += -I../../ta/aes_perf/include
 ifeq ($(CFG_WITH_SDP),y)
 CFLAGS += -I../../ta/sdp_basic/include
+CFLAGS += -I../../ta/sdp_perf/include
 endif
 ifdef CFG_GP_PACKAGE_PATH
 CFLAGS += -I../../ta/GP_TTA_Arithmetical
