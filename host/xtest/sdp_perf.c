@@ -46,7 +46,7 @@
 
 #include "include/uapi/linux/ion.h"
 
-#define DEFAULT_ION_HEAP_TYPE	(ION_HEAP_TYPE_CUSTOM + 1)
+#define DEFAULT_ION_HEAP_TYPE	ION_HEAP_TYPE_UNMAPPED
 
 static TEEC_Context ctx;
 static TEEC_Session sess;
@@ -69,7 +69,7 @@ int sdp_basic_test(size_t len, unsigned int loop, int verbosity);
 
 static int input_sdp_buffer = SDP_BUFFER_DISABLE;
 static int input_sdp_fd;
-static int output_sdp_buffer = SDP_BUFFER_REGISTER;
+static int output_sdp_buffer = SDP_BUFFER_PREREGISTERED;
 static int output_sdp_fd;
 static int ion_heap = DEFAULT_ION_HEAP_TYPE;
 
