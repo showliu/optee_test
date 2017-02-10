@@ -83,7 +83,7 @@ int allocate_ion_buffer(size_t size, int heap_id);
 /* non zero value forces buffer to be mappeable from nonsecure */
 #define BUF_MUST_MAP	0
 
-#define DEFAULT_ION_HEAP_TYPE	(ION_HEAP_TYPE_CUSTOM + 1)
+#define DEFAULT_ION_HEAP_TYPE	ION_HEAP_TYPE_UNMAPPED
 
 /*
  * Warm when nonsecure maps SDP buffer and found unexpected content.
@@ -118,6 +118,8 @@ int allocate_ion_buffer(size_t size, int heap_id)
 		heap_id == ION_HEAP_TYPE_SYSTEM_CONTIG ? "system contig" :
 		heap_id == ION_HEAP_TYPE_CARVEOUT ? "carveout" :
 		heap_id == ION_HEAP_TYPE_CHUNK ? "chunk" :
+		heap_id == ION_HEAP_TYPE_DMA ? "dma" :
+		heap_id == ION_HEAP_TYPE_UNMAPPED ? "unmapped" :
 		"custom");
 
 	alloc_data.len = size;
