@@ -226,34 +226,6 @@ static void xtest_tee_7010(ADBG_Case_t *c)
 	TEEC_FinalizeContext(CONTEXT01);
 }
 
-/*29-f0-9c*/
-static void xtest_tee_7011(ADBG_Case_t *c)
-{
-	if (!ADBG_EXPECT_TRUE(c, xtest_tee_init(c)))
-		return;
-	TEEC_SelectApp(CLIENT_APP01, THREAD01_DEFAULT);
-	XML_InitializeContext(c, _device, CONTEXT01, TEEC_SUCCESS);
-	XML_OpenSession(c, CONTEXT01, SESSION01,
-			&UUID_TTA_answerSuccessTo_OpenSession_Invoke,
-			TEEC_LOGIN_PUBLIC, NULL, NULL, 0, TEEC_SUCCESS);
-	TEEC_CloseSession(SESSION01);
-	TEEC_FinalizeContext(CONTEXT01);
-}
-
-/*29-4d-b0*/
-static void xtest_tee_7012(ADBG_Case_t *c)
-{
-	if (!ADBG_EXPECT_TRUE(c, xtest_tee_init(c)))
-		return;
-	TEEC_SelectApp(CLIENT_APP01, THREAD01_DEFAULT);
-	XML_InitializeContext(c, _device, CONTEXT01, TEEC_SUCCESS);
-	XML_OpenSession(c, CONTEXT01, SESSION01,
-			&UUID_TTA_answerErrorTo_OpenSession, TEEC_LOGIN_PUBLIC,
-			NULL, NULL, TEEC_ORIGIN_TRUSTED_APP,
-			TEEC_ERROR_GENERIC);
-	TEEC_FinalizeContext(CONTEXT01);
-}
-
 /*29-a2-e3*/
 static void xtest_tee_7013(ADBG_Case_t *c)
 {
@@ -265,49 +237,6 @@ static void xtest_tee_7013(ADBG_Case_t *c)
 			&UUID_TTA_answerSuccessTo_OpenSession_Invoke,
 			INVALID_CONNECTION_METHODS, NULL, NULL,
 			TEEC_ORIGIN_ANY_NOT_TRUSTED_APP, TEEC_UNDEFINED_ERROR);
-	TEEC_FinalizeContext(CONTEXT01);
-}
-
-/*29-5d-d8*/
-static void xtest_tee_7014(ADBG_Case_t *c)
-{
-	if (!ADBG_EXPECT_TRUE(c, xtest_tee_init(c)))
-		return;
-	TEEC_SelectApp(CLIENT_APP01, THREAD01_DEFAULT);
-	XML_InitializeContext(c, _device, CONTEXT01, TEEC_SUCCESS);
-	OPERATION_TEEC_PARAM_TYPES(OPERATION01, TEEC_VALUE_INPUT,
-				   TEEC_VALUE_INPUT, TEEC_VALUE_INPUT,
-				   TEEC_VALUE_INPUT);
-
-	TEEC_prepare_OperationEachParameter_value(OPERATION01, 0, VALUE01,
-						  IGNORE);
-	TEEC_prepare_OperationEachParameter_value(OPERATION01, 1, IGNORE,
-						  VALUE01);
-	TEEC_prepare_OperationEachParameter_value(OPERATION01, 2, VALUE01,
-						  VALUE01);
-	TEEC_prepare_OperationEachParameter_value(OPERATION01, 3, VALUE01,
-						  VALUE02);
-
-	XML_OpenSession(c, CONTEXT01, SESSION01,
-			&UUID_TTA_check_OpenSession_with_4_parameters,
-			TEEC_LOGIN_PUBLIC, NULL, OPERATION01, 0,
-			TEEC_SUCCESS);
-	TEEC_CloseSession(SESSION01);
-	TEEC_FinalizeContext(CONTEXT01);
-}
-
-/*29-82-81*/
-static void xtest_tee_7015(ADBG_Case_t *c)
-{
-	if (!ADBG_EXPECT_TRUE(c, xtest_tee_init(c)))
-		return;
-	TEEC_SelectApp(CLIENT_APP01, THREAD01_DEFAULT);
-	XML_InitializeContext(c, _device, CONTEXT01, TEEC_SUCCESS);
-	XML_OpenSession(c, CONTEXT01, SESSION01,
-			&UUID_TTA_answerSuccessTo_OpenSession_Invoke,
-			TEEC_LOGIN_PUBLIC, NULL, NULL, TEEC_ORIGIN_TRUSTED_APP,
-			TEEC_SUCCESS);
-	TEEC_CloseSession(SESSION01);
 	TEEC_FinalizeContext(CONTEXT01);
 }
 
@@ -355,41 +284,33 @@ static void xtest_tee_7019(ADBG_Case_t *c)
 	TEEC_FinalizeContext(CONTEXT01);
 }
 
-ADBG_CASE_DEFINE(XTEST_TEE_7001, xtest_tee_7001,
+ADBG_CASE_DEFINE(regression, 7001, xtest_tee_7001,
 	"Allocate_In RELEASE_SHARED_MEMORY_WHEN_ALLOCATED");
-ADBG_CASE_DEFINE(XTEST_TEE_7002, xtest_tee_7002,
+ADBG_CASE_DEFINE(regression, 7002, xtest_tee_7002,
 	"Allocate_out_of_memory INITIALIZE_CONTEXT_NAMES");
-ADBG_CASE_DEFINE(XTEST_TEE_7003, xtest_tee_7003,
+ADBG_CASE_DEFINE(regression, 7003, xtest_tee_7003,
 	"ReleaseSharedMemory_null RELEASE_SHARED_MEMORY_WHEN_ALLOCATED");
-ADBG_CASE_DEFINE(XTEST_TEE_7004, xtest_tee_7004,
+ADBG_CASE_DEFINE(regression, 7004, xtest_tee_7004,
 	"Allocate_InOut RELEASE_SHARED_MEMORY_WHEN_ALLOCATED");
-ADBG_CASE_DEFINE(XTEST_TEE_7005, xtest_tee_7005,
+ADBG_CASE_DEFINE(regression, 7005, xtest_tee_7005,
 	"Register_In RELEASE_SHARED_MEMORY_WHEN_REGISTERED");
-ADBG_CASE_DEFINE(XTEST_TEE_7006, xtest_tee_7006,
+ADBG_CASE_DEFINE(regression, 7006, xtest_tee_7006,
 	"Register_notZeroLength_Out RELEASE_SHARED_MEMORY_WHEN_REGISTERED");
-ADBG_CASE_DEFINE(XTEST_TEE_7007, xtest_tee_7007,
+ADBG_CASE_DEFINE(regression, 7007, xtest_tee_7007,
 	"Register_InOut RELEASE_SHARED_MEMORY_WHEN_REGISTERED");
-ADBG_CASE_DEFINE(XTEST_TEE_7008, xtest_tee_7008,
+ADBG_CASE_DEFINE(regression, 7008, xtest_tee_7008,
 	"Register_zeroLength_Out RELEASE_SHARED_MEMORY_WHEN_REGISTERED");
-ADBG_CASE_DEFINE(XTEST_TEE_7009, xtest_tee_7009,
+ADBG_CASE_DEFINE(regression, 7009, xtest_tee_7009,
 	"OpenSession_error_notExistingTA OPEN_SESSION_TARGET_TRUSTED_APP");
-ADBG_CASE_DEFINE(XTEST_TEE_7010, xtest_tee_7010,
+ADBG_CASE_DEFINE(regression, 7010, xtest_tee_7010,
 	"Allocate_Out RELEASE_SHARED_MEMORY_WHEN_ALLOCATED");
-ADBG_CASE_DEFINE(XTEST_TEE_7011, xtest_tee_7011,
-	"OpenSession_success_nullReturnOrigin OPEN_SESSION_TARGET_TRUSTED_APP");
-ADBG_CASE_DEFINE(XTEST_TEE_7012, xtest_tee_7012,
-	"OpenSession_error_originTrustedApp OPEN_SESSION_TARGET_TRUSTED_APP");
-ADBG_CASE_DEFINE(XTEST_TEE_7013, xtest_tee_7013,
+ADBG_CASE_DEFINE(regression, 7013, xtest_tee_7013,
 	"OpenSession_error_originTEE OPEN_SESSION_TARGET_TRUSTED_APP");
-ADBG_CASE_DEFINE(XTEST_TEE_7014, xtest_tee_7014,
-	"OpenSession_with_operation_parameters OPEN_SESSION_TARGET_TRUSTED_APP");
-ADBG_CASE_DEFINE(XTEST_TEE_7015, xtest_tee_7015,
-	"OpenSession_success_originTrustedApp OPEN_SESSION_TARGET_TRUSTED_APP");
-ADBG_CASE_DEFINE(XTEST_TEE_7016, xtest_tee_7016,
+ADBG_CASE_DEFINE(regression, 7016, xtest_tee_7016,
 	"CloseSession_null CLOSE_SESSION_IGNORE_SESSION_NULL");
-ADBG_CASE_DEFINE(XTEST_TEE_7017, xtest_tee_7017,
+ADBG_CASE_DEFINE(regression, 7017, xtest_tee_7017,
 	"InitializeContext_NotExistingTEE INITIALIZE_CONTEXT_NAMES");
-ADBG_CASE_DEFINE(XTEST_TEE_7018, xtest_tee_7018,
+ADBG_CASE_DEFINE(regression, 7018, xtest_tee_7018,
 	"FinalizeContext_null FINALIZE_CONTEXT_IGNORE_NULL");
-ADBG_CASE_DEFINE(XTEST_TEE_7019, xtest_tee_7019,
+ADBG_CASE_DEFINE(regression, 7019, xtest_tee_7019,
 	"InitializeContext_concurrentContext INITIALIZE_CONTEXT_NAMES");
