@@ -22,7 +22,7 @@ TA_DIRS := create_fail_test \
 	   sha_perf \
 	   aes_perf
 
-ifeq ($(CFG_WITH_SDP),y)
+ifeq ($(CFG_SECURE_DATA_PATH),y)
 TA_DIRS += sdp_basic \
 	   sdp_perf
 endif

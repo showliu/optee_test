@@ -46,7 +46,7 @@ srcs := xtest_1000.c \
 	adbg/src/adbg_run.c \
 	adbg/src/security_utils_hex.c
 
-ifeq ($(CFG_WITH_SDP),y)
+ifeq ($(CFG_SECURE_DATA_PATH),y)
 CFLAGS += -DWITH_SDP
 
 srcs += sdp_basic.c \
@@ -83,7 +83,7 @@ CFLAGS += -I../../ta/concurrent/include
 CFLAGS += -I../../ta/concurrent_large/include
 CFLAGS += -I../../ta/sha_perf/include
 CFLAGS += -I../../ta/aes_perf/include
-ifeq ($(CFG_WITH_SDP),y)
+ifeq ($(CFG_SECURE_DATA_PATH),y)
 CFLAGS += -I../../ta/sdp_basic/include
 CFLAGS += -I../../ta/sdp_perf/include
 endif
