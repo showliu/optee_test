@@ -42,7 +42,7 @@ srcs := xtest_1000.c \
 	aes_perf.c \
 	sha_perf.c
 
-ifeq ($(CFG_WITH_SDP),y)
+ifeq ($(CFG_SECURE_DATA_PATH),y)
 srcs += sdp_perf.c \
 	sdp_basic.c
 endif
@@ -66,7 +66,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/host/xtest \
 		$(LOCAL_PATH)/ta/sha_perf/include \
 		$(LOCAL_PATH)/ta/aes_perf/include
 
-ifeq ($(CFG_WITH_SDP),y)
+ifeq ($(CFG_SECURE_DATA_PATH),y)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/ta/sdp_basic/include \
 		    $(LOCAL_PATH)/ta/sdp_perf/include
 endif
